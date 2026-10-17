@@ -1,0 +1,11 @@
+{
+  // Live Server: abre la tienda en http://127.0.0.1:5500 y no recarga la página
+  // cuando cambian archivos del servidor o de la documentación.
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.host": "127.0.0.1",
+  "liveServer.settings.ignoreFiles": [
+    "servidor/**",
+    ".vscode/**",
+    "**/*.md"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  // Tarea que enciende el servidor de JERPRI (PostgreSQL) al abrir la carpeta en VS Code.
+  // La primera vez VS Code pregunta si permite tareas automáticas: elegí "Permitir".
+  // También se puede iniciar a mano: Terminal → Run Task… → "JERPRI: encender servidor".
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "JERPRI: encender servidor",
+      "type": "shell",
+      "command": "npm start",
+      "options": { "cwd": "${workspaceFolder}/servidor" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "JERPRI: crear la base de datos de cero (borra todo)",
+      "type": "shell",
+      "command": "npm run db:crear",
+      "options": { "cwd": "${workspaceFolder}/servidor" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "new" }
+    }
+  ]
+}

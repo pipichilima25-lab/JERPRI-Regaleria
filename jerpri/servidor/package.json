@@ -1,0 +1,19 @@
+{
+  "name": "jerpri-servidor",
+  "version": "1.0.0",
+  "description": "Servidor de la tienda JERPRI conectado a PostgreSQL",
+  "main": "src/servidor.js",
+  "private": true,
+  "scripts": {
+    "prestart": "node src/instalar.js",
+    "start": "node src/servidor.js",
+    "dev": "node --watch src/servidor.js",
+    "db:crear": "node db/crear.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}
