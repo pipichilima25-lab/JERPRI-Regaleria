@@ -21,8 +21,10 @@ JP.api = (function () {
       if (location.port === port) return '';                                   // abierta desde el servidor
       return location.protocol + '//' + location.hostname + ':' + port;        // Live Server u otro puerto
     }
-    return 'http://localhost:' + port;                                          // archivo abierto con doble clic
-  }
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        return 'http://localhost:' + port;
+    } else {
+        return 'https://jerpri-regaleria.onrender.com';                                      // archivo abierto con doble clic
 
   const api = {
     on: false,                 // true = conectada al servidor
