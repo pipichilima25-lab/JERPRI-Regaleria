@@ -7,13 +7,12 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: process.env.PGHOST || 'localhost',
-  port: Number(process.env.PGPORT || 5432),
-  user: process.env.PGUSER || 'postgres',
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE || 'jerpri',
-  max: 10
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
+
 
 // Si una conexión inactiva se corta, se avisa en la consola sin apagar el servidor.
 pool.on('error', err => console.error('[db] Error en una conexión inactiva:', err.message));
