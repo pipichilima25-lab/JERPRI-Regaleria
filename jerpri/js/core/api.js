@@ -16,15 +16,21 @@ window.JP = window.JP || {};
 JP.api = (function () {
   /** Dirección base de la API según cómo se abrió la página. */
   function baseUrl() {
-    const port = String((window.JERPRI_CONFIG || {}).puertoServidor || 3000);
-    if (/^https?:$/.test(location.protocol)) {
-      if (location.port === port) return '';                                   // abierta desde el servidor
-      return location.protocol + '//' + location.hostname + ':' + port;        // Live Server u otro puerto
-    }
+    const port = String((window.JERPRI_CONFIG || {}).puertoservidor || 3000);
+    
+    // Si estás trabajando de forma local en tu PC (con Live Server o localhost)
     if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         return 'http://localhost:' + port;
-    } else {
-        return 'https://jerpri-regaleria.onrender.com';                                      // archivo abierto con doble clic
+} 
+    
+    // Si lo abres con doble clic directamente (protocolo file://)
+    if (location.protocol === 'file:') {
+        return 'http://localhost:' + port; 
+    }
+    
+    // Para cualquier otro sitio web en internet (como tu despliegue en GitHub Pages)
+    return 'https://onrender.com';
+}                            
 
   const api = {
     on: false,                 // true = conectada al servidor
@@ -111,5 +117,11 @@ JP.api = (function () {
     } finally { revisando = false; }
   }
 
-  return Object.assign(api, { call, detect, load, send, checkNotices });
+ api._call = typeof call !== 'undefined' ? call : undefined;
+    api.detect = typeof detect !== 'undefined' ? detect : undefined;
+    api.load = typeof load !== 'undefined' ? load : undefined;
+    api.send = typeof send !== 'undefined' ? send : undefined;
+    api.checkNotices = typeof checkNotices !== 'undefined' ? checkNotices : undefined;
+
+    return api;
 })();
