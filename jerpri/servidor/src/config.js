@@ -25,8 +25,8 @@ if (fs.existsSync(ENV)) {
 
 module.exports = {
   PUERTO: Number(process.env.PORT || 3000),
-  RAIZ_WEB: path.join(__dirname, '..', '..'),           // carpeta con index.html, css/, js/ y assets/
-  DIAS_SESION: Number(process.env.DIAS_SESION || 7),
+RAIZ_WEB: path.join(__dirname, '..', '..', '..'),
+   DIAS_SESION: Number(process.env.DIAS_SESION || 7),
   // Direcciones extra desde las que se puede usar la API (separadas por coma).
   // No hace falta tocarlo para Live Server: se acepta cualquier página abierta en este mismo equipo.
   ORIGENES_EXTRA: String(process.env.ORIGENES_PERMITIDOS || '').split(',').map(s => s.trim().replace(/\/+$/, '')).filter(Boolean)
